@@ -2,8 +2,10 @@ package com.json.medicontact.controller;
 
 import com.json.medicontact.model.Doctor;
 import com.json.medicontact.repository.DoctorRepository;
+import com.json.medicontact.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,8 +18,23 @@ import java.util.List;
 @RequestMapping("/doctors")
 public class DoctorController
 {
+
+	private final DoctorRepository doctorRepository;
+
+	private final DoctorService doctorService;
+
 	@Autowired
-	DoctorRepository doctorRepository;
+	public DoctorController(DoctorService doctorService, DoctorRepository doctorRepository)
+	{
+		this.doctorService = doctorService;
+		this.doctorRepository = doctorRepository;
+	}
+
+	@GetMapping("/{doctorId}")
+	public Doctor getDoctorById(@PathVariable(value = "doctorId", required = true) Long id)
+	{
+		return doctorService.findDoctorById(id).orElse(null);
+	}
 
 	@GetMapping
 	public List<Doctor> getAllDoctors() {
