@@ -1,7 +1,8 @@
 # Medicontact
 ## entity relation diagram
 https://drive.google.com/file/d/1xJ98ZxIyRTYprPPGxq8sNEVqw9ON9vTN/view?usp=sharing
-![diagramaEntidadRelacion drawio](https://github.com/jheysonvelez/medicontact/assets/48698637/d7000bc9-7618-4750-b3d3-09a75b937d25)
+![diagramaEntidadRelacion](https://github.com/jheysonvelez/medicontact/assets/48698637/45f331b8-31c9-4064-be6b-c8f71c61a5bc)
+
 
 ## object diagram
 https://drive.google.com/file/d/1m9lTKj7lbWEoOSDpvum6gXKquR-h6pNS/view?usp=sharing
