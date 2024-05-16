@@ -106,7 +106,7 @@ Delete user if exists by id
 ### Usage example:
 
 ```http
-GET /users/1
+DELETE /users/1
 ```
 #### response
 ```json
@@ -118,54 +118,11 @@ GET /users/1
 ### Usage example:
 
 ```http
-GET /users/1
+DELETE /users/1
 ```
 #### response
 ```String
 User with id 2 not found
-```
-
-## Find user by ID
-
-Finds an user by its id
-
-- **URL**: `/users/{userId}`
-- **HTTP Method**: `GET`
-- **Request params**:
-  - `userId`: user Id (Long)
-- **success Response**:
-  - Status: `200 OK`
-  - Response body: Object `UserDTO` (JSON format)
-
-### Usage example:
-
-```http
-GET /users/1
-```
-#### response
-```json
-
-  {
-      "id": 1,
-      "email": "jheyson@example.com",
-      "documentNumber": "123456789",
-      "documentType": "CC",
-      "birthDate": "2000-07-06T00:00:00.000+00:00",
-      "name": "Jheyson Velez"
-  }
-```
-- **Error Response**:
-  - Status: `404 NOT FOUND`
-  - Response body: Error message `String`
-
-### Usage example:
-
-```http
-GET /users/1
-```
-#### response
-```String
-User with id 1 not found
 ```
 
 ## Create User
@@ -212,7 +169,7 @@ Content-Type: application/json
 Update existing user
 
 - **URL**: `/users/`
-- **HTTP Method**: `POST`
+- **HTTP Method**: `PUT`
 - **Request body**:
   - `user`: Object `UserDTO` (JSON format)
 - **success Response**:
@@ -222,7 +179,7 @@ Update existing user
 ### Usage example:
 
 ```http
-POST /users
+PUT /users
 Content-Type: application/json
 
 {
