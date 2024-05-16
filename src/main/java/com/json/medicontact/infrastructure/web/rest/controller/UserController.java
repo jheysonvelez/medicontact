@@ -2,6 +2,8 @@ package com.json.medicontact.infrastructure.web.rest.controller;
 
 import com.json.medicontact.application.service.UserService;
 import com.json.medicontact.domain.model.User;
+import com.json.medicontact.infrastructure.web.dto.UserDTO;
+import com.json.medicontact.infrastructure.web.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,17 +22,20 @@ import java.util.List;
 public class UserController
 {
 	private final UserService userService;
+	private final UserMapper userMapper;
 
 	@Autowired
-	public UserController(UserService userService)
+	public UserController(UserService userService, UserMapper userMapper)
 	{
 		this.userService = userService;
+		this.userMapper = userMapper;
 	}
 
 	@GetMapping("/{userId}")
-	public User getUserById(@PathVariable(value = "userId") Long id)
+	public UserDTO getUserById(@PathVariable(value = "userId") Long id)
 	{
-		return userService.findUserById(id);
+		User user = userService.findUserById(id);
+		return userMapper.userToUserDTO(user);
 	}
 
 	@GetMapping("")
@@ -40,15 +45,19 @@ public class UserController
 	}
 
 	@PostMapping("")
-	public User createUser(@RequestBody User user)
+	public UserDTO createUser(@RequestBody UserDTO userDTO)
 	{
-		return userService.saveUser(user);
+		User user = userMapper.userDTOToUser(userDTO);
+		User saveUser = userService.saveUser(user);
+		return userMapper.userToUserDTO(saveUser);
 	}
 
 	@PutMapping("")
-	public User updateUser(@RequestBody User user)
+	public UserDTO updateUser(@RequestBody UserDTO userDTO)
 	{
-		return userService.updateUser(user);
+		User user = userMapper.userDTOToUser(userDTO);
+		User updatedUser = userService.updateUser(user);
+		return userMapper.userToUserDTO(updatedUser);
 	}
 
 	@DeleteMapping("/{userId}")
