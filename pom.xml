@@ -39,7 +39,7 @@
 			<artifactId>postgresql</artifactId>
 			<version>42.2.24</version>
 		</dependency>
-		<!-- depending on your project -->
+		<!-- mappers -->
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
@@ -51,7 +51,7 @@
 			<version>1.4.2.Final</version>
 			<scope>provided</scope>
 		</dependency>
-
+		<!-- testing -->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
@@ -64,6 +64,7 @@
 			<version>4.5.1</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- documentation -->
 
 
 	</dependencies>
