@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import java.util.Date;
 import java.util.Objects;
@@ -20,6 +22,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User
 {
 	@Id
@@ -110,7 +113,8 @@ public class User
 	}
 
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		return "User{" +
 				"id=" + id +
 				", email='" + email + '\'' +
@@ -122,19 +126,23 @@ public class User
 	}
 
 	@Override
-	public int hashCode() {
+	public int hashCode()
+	{
 		return Objects.hash(id, email, documentNumber, documentType, birthDate, name);
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
+	public boolean equals(Object o)
+	{
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
 		User user = (User) o;
 		return
 				Objects.equals(email, user.email) &&
-				Objects.equals(documentNumber, user.documentNumber) &&
-				Objects.equals(documentType, user.documentType) &&
-				Objects.equals(birthDate, user.birthDate);
+						Objects.equals(documentNumber, user.documentNumber) &&
+						Objects.equals(documentType, user.documentType) &&
+						Objects.equals(birthDate, user.birthDate);
 	}
 }

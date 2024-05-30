@@ -4,6 +4,7 @@ import com.json.medicontact.application.service.UserService;
 import com.json.medicontact.domain.model.User;
 import com.json.medicontact.domain.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +15,7 @@ import java.util.Optional;
 
 
 @Service
+@Qualifier("defaultUserService")
 public class DefaultUserService implements UserService
 {
 	final UserRepository userRepository;
@@ -71,7 +73,7 @@ public class DefaultUserService implements UserService
 		return userRepository.save(existingUser);
 	}
 
-	private void copyNonNullProperties(User source, User target)
+	public void copyNonNullProperties(User source, User target)
 	{
 		if (Objects.nonNull(source.getEmail()))
 		{
