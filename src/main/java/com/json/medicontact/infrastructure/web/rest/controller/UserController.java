@@ -8,6 +8,7 @@ import com.json.medicontact.infrastructure.web.dto.UserDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +33,7 @@ public class UserController
 	private final UserModelAssembler userModelAssembler;
 
 	@Autowired
-	public UserController(UserService userService, UserModelAssembler userModelAssembler)
+	public UserController(@Qualifier("defaultUserService") UserService userService, UserModelAssembler userModelAssembler)
 	{
 		this.userService = userService;
 		this.userModelAssembler = userModelAssembler;
@@ -95,7 +96,8 @@ public class UserController
 
 	@PatchMapping("/{userId}")
 	@Operation(summary = "Partially update an existing user")
-	public ResponseEntity<UserDTO> patchUser(@PathVariable(value = "userId") Long id, @RequestBody UserDTO userDTO) {
+	public ResponseEntity<UserDTO> patchUser(@PathVariable(value = "userId") Long id, @RequestBody UserDTO userDTO)
+	{
 		User patchedUser = userService.patchUser(id, userModelAssembler.toDomain(userDTO));
 		return ResponseEntity.ok(userModelAssembler.toModel(patchedUser));
 	}

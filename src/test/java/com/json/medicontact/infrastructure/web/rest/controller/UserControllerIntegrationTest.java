@@ -39,7 +39,7 @@ public class UserControllerIntegrationTest
 {
 	public static final String TEST_EMAIL = "jheyson@test.com";
 	public static final String DOCUMENT_NUMBER = "12345678";
-	public static final String NAME = "John Doe";
+	public static final String NAME = "Jheyson Velez";
 	public static final String DOCUMENT_TYPE = "ID";
 	@Autowired
 	private MockMvc mockMvc;
