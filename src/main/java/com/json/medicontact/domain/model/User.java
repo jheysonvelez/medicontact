@@ -1,5 +1,8 @@
 package com.json.medicontact.domain.model;
 
+
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.Objects;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 
 @Entity
 @Table(name = "users")
@@ -14,17 +24,28 @@ public class User
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-
 	@Column(name = "id")
 	private Long id;
+	@NotNull
+	@Email
+	@Size(min = 3, max = 50)
 	@Column(name = "email")
 	private String email;
+	@NotNull
+	@Size(min = 3, max = 25)
+	@Pattern(regexp = "\\d+", message = "Document number only contain digits")
 	@Column(name = "document_number")
 	private String documentNumber;
+	@NotNull
+	@Size(min = 3, max = 25)
 	@Column(name = "document_type")
 	private String documentType;
+	@NotNull
+	@Past
 	@Column(name = "birth_date")
 	private Date birthDate;
+	@NotNull
+	@Size(min = 2, max = 100)
 	@Column(name = "name")
 	private String name;
 
@@ -86,5 +107,34 @@ public class User
 	public void setName(String name)
 	{
 		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "User{" +
+				"id=" + id +
+				", email='" + email + '\'' +
+				", documentNumber='" + documentNumber + '\'' +
+				", documentType='" + documentType + '\'' +
+				", birthDate=" + birthDate +
+				", name='" + name + '\'' +
+				'}';
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, email, documentNumber, documentType, birthDate, name);
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		User user = (User) o;
+		return
+				Objects.equals(email, user.email) &&
+				Objects.equals(documentNumber, user.documentNumber) &&
+				Objects.equals(documentType, user.documentType) &&
+				Objects.equals(birthDate, user.birthDate);
 	}
 }

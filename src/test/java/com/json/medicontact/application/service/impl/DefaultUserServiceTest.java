@@ -43,11 +43,11 @@ class DefaultUserServiceTest
 		when(userRepository.findById(userId)).thenReturn(Optional.of(user));
 
 		// When
-		User foundUser = userService.findUserById(userId);
+		Optional<User> foundUser = userService.findUserById(userId);
 
 		// Then
-		assertNotNull(foundUser);
-		assertEquals(userId, foundUser.getId());
+		assertNotNull(foundUser.get());
+		assertEquals(userId, foundUser.get().getId());
 	}
 
 	@Test
@@ -58,7 +58,9 @@ class DefaultUserServiceTest
 		when(userRepository.findById(userId)).thenReturn(Optional.empty());
 
 		// When/Then
-		assertThrows(EntityNotFoundException.class, () -> userService.findUserById(userId));
+		Optional<User> userById = userService.findUserById(userId);
+
+		assertEquals(Optional.empty(), userById);
 	}
 
 	@Test
