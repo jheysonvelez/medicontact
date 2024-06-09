@@ -1,4 +1,4 @@
-package com.json.medicontact.infrastructure.web.rest.controller;
+package com.json.medicontact.infrastructure.web.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.json.medicontact.application.service.DoctorService;

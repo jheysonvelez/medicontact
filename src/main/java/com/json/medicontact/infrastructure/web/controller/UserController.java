@@ -1,4 +1,4 @@
-package com.json.medicontact.infrastructure.web.rest.controller;
+package com.json.medicontact.infrastructure.web.controller;
 
 import com.json.medicontact.application.service.UserService;
 import com.json.medicontact.domain.model.User;
@@ -57,7 +57,7 @@ public class UserController
 	}
 
 
-	@GetMapping("")
+	@GetMapping
 	@Operation(summary = "Get all users", description = "find all users")
 	public ResponseEntity<List<UserDTO>> findAllUsers()
 	{
@@ -68,7 +68,7 @@ public class UserController
 		return ResponseEntity.ok(userDTOs);
 	}
 
-	@PostMapping("")
+	@PostMapping
 	@Operation(summary = "Create a new user")
 	public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO)
 	{
@@ -77,7 +77,7 @@ public class UserController
 		return ResponseEntity.ok(userModelAssembler.toModel(saveUser));
 	}
 
-	@PutMapping("")
+	@PutMapping
 	@Operation(summary = "Update parts of an existing user")
 	public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO)
 	{

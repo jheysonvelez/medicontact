@@ -1,4 +1,4 @@
-package com.json.medicontact.infrastructure.web.rest.controller;
+package com.json.medicontact.infrastructure.web.controller;
 
 import com.json.medicontact.application.service.DoctorService;
 import com.json.medicontact.domain.model.Doctor;
@@ -54,7 +54,7 @@ public class DoctorController
 	}
 
 
-	@GetMapping("")
+	@GetMapping
 	@Operation(summary = "Get all doctors", description = "find all doctors")
 	public ResponseEntity<List<DoctorDTO>> findAllDoctors()
 	{
@@ -65,7 +65,7 @@ public class DoctorController
 		return ResponseEntity.ok(doctorDTOs);
 	}
 
-	@PostMapping("")
+	@PostMapping
 	@Operation(summary = "Create a new doctor")
 	public ResponseEntity<DoctorDTO> createDoctor(@RequestBody DoctorDTO doctorDTO)
 	{
@@ -74,7 +74,7 @@ public class DoctorController
 		return ResponseEntity.ok(doctorModelAssembler.toModel(saveDoctor));
 	}
 
-	@PutMapping("")
+	@PutMapping
 	@Operation(summary = "Update parts of an existing doctor")
 	public ResponseEntity<DoctorDTO> updateDoctor(@RequestBody DoctorDTO doctorDTO)
 	{

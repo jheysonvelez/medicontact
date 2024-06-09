@@ -3,7 +3,7 @@ package com.json.medicontact.infrastructure.web.assembler;
 import com.json.medicontact.domain.model.Doctor;
 import com.json.medicontact.infrastructure.web.dto.DoctorDTO;
 import com.json.medicontact.infrastructure.web.mapper.DoctorMapper;
-import com.json.medicontact.infrastructure.web.rest.controller.DoctorController;
+import com.json.medicontact.infrastructure.web.controller.DoctorController;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;

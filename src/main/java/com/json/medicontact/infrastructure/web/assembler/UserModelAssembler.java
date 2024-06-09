@@ -3,7 +3,7 @@ package com.json.medicontact.infrastructure.web.assembler;
 import com.json.medicontact.domain.model.User;
 import com.json.medicontact.infrastructure.web.dto.UserDTO;
 import com.json.medicontact.infrastructure.web.mapper.UserMapper;
-import com.json.medicontact.infrastructure.web.rest.controller.UserController;
+import com.json.medicontact.infrastructure.web.controller.UserController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.lang.NonNull;
