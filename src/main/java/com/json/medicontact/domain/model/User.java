@@ -3,6 +3,7 @@ package com.json.medicontact.domain.model;
 
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,8 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -51,6 +54,9 @@ public class User
 	@Size(min = 2, max = 100)
 	@Column(name = "name")
 	private String name;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Appointment> appointments;
 
 	public Long getId()
 	{
@@ -110,6 +116,16 @@ public class User
 	public void setName(String name)
 	{
 		this.name = name;
+	}
+
+	public List<Appointment> getAppointments()
+	{
+		return appointments;
+	}
+
+	public void setAppointments(List<Appointment> appointments)
+	{
+		this.appointments = appointments;
 	}
 
 	@Override
