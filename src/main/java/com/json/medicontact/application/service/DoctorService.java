@@ -1,5 +1,6 @@
 package com.json.medicontact.application.service;
 
+import com.json.medicontact.domain.model.Appointment;
 import com.json.medicontact.domain.model.Doctor;
 
 import java.util.List;
@@ -19,4 +20,6 @@ public interface DoctorService
 	void deleteDoctor(Long id);
 
 	Doctor patchDoctor(Long id, Doctor doctor);
+
+	List<Appointment> getAppointmentsByDoctor(Long id);
 }

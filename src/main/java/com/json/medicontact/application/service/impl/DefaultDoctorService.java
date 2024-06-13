@@ -1,6 +1,7 @@
 package com.json.medicontact.application.service.impl;
 
 import com.json.medicontact.application.service.DoctorService;
+import com.json.medicontact.domain.model.Appointment;
 import com.json.medicontact.domain.model.Doctor;
 import com.json.medicontact.domain.repository.DoctorRepository;
 import com.json.medicontact.domain.repository.UserRepository;
@@ -70,6 +71,12 @@ public class DefaultDoctorService extends DefaultUserService implements DoctorSe
 		Doctor doctorExisting = doctorRepository.findById(id).orElseThrow(EntityNotFoundException::new);
 		copyNonNullProperties(doctor, doctorExisting);
 		return doctor;
+	}
+
+	@Override
+	public List<Appointment> getAppointmentsByDoctor(Long id)
+	{
+		return doctorRepository.findAppointmentsByDoctorId(id);
 	}
 
 	public void copyNonNullProperties(Doctor source, Doctor target)

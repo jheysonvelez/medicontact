@@ -1,10 +1,13 @@
 package com.json.medicontact.domain.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -17,6 +20,9 @@ public class Doctor extends User
 	@Column(name = "specialization")
 	private String specialization;
 
+	@OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Appointment> appointments;
+
 	public String getSpecialization()
 	{
 		return specialization;
@@ -25,6 +31,18 @@ public class Doctor extends User
 	public void setSpecialization(String specialization)
 	{
 		this.specialization = specialization;
+	}
+
+	@Override
+	public List<Appointment> getAppointments()
+	{
+		return appointments;
+	}
+
+	@Override
+	public void setAppointments(List<Appointment> appointments)
+	{
+		this.appointments = appointments;
 	}
 
 	@Override
